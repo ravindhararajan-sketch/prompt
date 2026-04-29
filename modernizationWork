@@ -1,0 +1,88 @@
+You are a senior software architect analyzing the currently opened repository in VS Code.
+
+Do NOT generate any code or scripts.
+
+Your task is to scan the entire repository and output a file-level inventory strictly in CSV format.
+
+---
+
+## 🔍 Scope
+
+* Traverse all files and subdirectories from the repository root
+* Work only with the currently opened workspace
+
+---
+
+## 🚫 Exclusions (Strict)
+
+### Skip folders (case-insensitive, any depth):
+
+node_modules, bin, obj, .git, .vs, **pycache**, dist, .angular
+
+### Skip file extensions:
+
+.exe, .dll, .pdb, .jpg, .jpeg, .png, .gif, .ico, .zip, .woff, .woff2, .ttf, .eot
+
+---
+
+## 📄 Required Fields (per file)
+
+For each file, extract:
+
+* FilePath (relative to repo root)
+* FileName
+* Extension (lowercase, include dot)
+* LineCount (MUST be exact)
+* ProjectType
+
+---
+
+## ⚠️ Line Count Rules (MANDATORY)
+
+* Count actual number of lines in each file
+* Do NOT estimate or approximate
+* Do NOT skip
+* If file cannot be read → use "ERROR" as LineCount
+
+---
+
+## 🧠 ProjectType Classification
+
+* DotNet → .cs, .sln, .csproj
+* Angular → .ts, .html, .scss, angular.json
+* Python → .py
+* Config → .json, .xml, .yml, .yaml
+* Other → everything else
+
+---
+
+## 📊 Output Format (STRICT CSV)
+
+Output ONLY CSV. No explanations.
+
+### Header (must match exactly):
+
+FilePath,FileName,Extension,LineCount,ProjectType
+
+### Rules:
+
+* One row per file
+* Comma-separated
+* No extra spaces
+* No markdown
+* No code block formatting
+* No summary section
+* No additional text before or after CSV
+
+---
+
+## ❗ Constraints
+
+* Accuracy over completeness
+* If repo is too large, process as many files as possible but DO NOT approximate
+* Do NOT generate code
+* Do NOT explain anything
+
+---
+
+Return ONLY the CSV content.
